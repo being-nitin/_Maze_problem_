@@ -10,6 +10,11 @@ public class Main {
         System.out.println(list);
         ArrayList<String> list2 = pathlistArray("",3,3);
         System.out.println(list2);
+        boolean[][] maze = {
+                {true,true,true},
+                {true,false,true},
+                {true,true,true}};
+        pathRestriction("",maze,0,0);
     }
     public static int count(int r,int c){
         if(r==1 || c==1){                         // base condition is r==1 or c==1 because if any of them becomes
@@ -72,4 +77,27 @@ public class Main {
       }
       return ans;
     }
+    // now applying the restriction on paths at a particular position.
+    // in this we will start the row and column as (0,0) nitin
+
+    public static void pathRestriction(String p,boolean[][] maze,int r,int c){
+        if(r==maze.length-1 && c==maze[0].length-1){
+            System.out.println(p);
+            return;
+        }
+        if(!maze[r][c]){
+            return;
+        }
+        if(r< maze.length-1){
+            pathRestriction(p+"D",maze,r+1,c);
+        }
+        if(c< maze.length-1){
+            pathRestriction(p+"R",maze,r,c+1);
+        }
+    }
 }
+
+
+
+
+
