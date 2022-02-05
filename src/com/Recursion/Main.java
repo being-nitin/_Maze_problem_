@@ -8,6 +8,8 @@ public class Main {
         paths("",3,3);
         ArrayList<String> list = pathsLList("",3,3);
         System.out.println(list);
+        ArrayList<String> list2 = pathlistArray("",3,3);
+        System.out.println(list2);
     }
     public static int count(int r,int c){
         if(r==1 || c==1){                         // base condition is r==1 or c==1 because if any of them becomes
@@ -48,5 +50,26 @@ public class Main {
             ans.addAll(pathsLList(p+'R',r,c-1));
         }
         return ans;
+    }
+
+    // printing the diagonal elements too.
+
+    public static ArrayList<String> pathlistArray(String p,int r,int c){
+      if(r==1 && c==1){
+          ArrayList<String> list = new ArrayList<>();
+          list.add(p);
+          return list;
+      }
+      ArrayList<String> ans = new ArrayList<>();
+      if(r>1 && c>1){
+          ans.addAll(pathlistArray(p+'D',r-1,c-1));
+      }
+      if(r>1){
+          ans.addAll(pathlistArray(p+"V",r-1,c));
+      }
+      if(c>1){
+          ans.addAll(pathlistArray(p+'H',r,c-1));
+      }
+      return ans;
     }
 }
