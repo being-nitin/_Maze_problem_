@@ -6,6 +6,8 @@ public class Main {
         // count the number of paths.
         System.out.println(count(3,3));
         paths("",3,3);
+        ArrayList<String> list = pathsLList("",3,3);
+        System.out.println(list);
     }
     public static int count(int r,int c){
         if(r==1 || c==1){                         // base condition is r==1 or c==1 because if any of them becomes
@@ -28,5 +30,23 @@ public class Main {
         if(c>1){
             paths(p+'R',r,c-1);
         }
+    }
+    // now returning an arraylist in which all the paths will be stored.
+
+
+    public static ArrayList<String> pathsLList(String p,int r, int c) {
+        if (r == 1 && c == 1) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+        ArrayList<String> ans = new ArrayList<>();
+        if (r > 1) {
+            ans.addAll(pathsLList(p + 'D', r - 1, c));
+        }
+        if(c>1){
+            ans.addAll(pathsLList(p+'R',r,c-1));
+        }
+        return ans;
     }
 }
